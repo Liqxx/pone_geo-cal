@@ -13,7 +13,7 @@ b=[]
 a=[]
 t=[]
 
-f=open('/home/fhenningsen/osc/deepcore_systematics/icemodel/default/icemodel.dat','r')
+f=open('../watermodel/default/icemodel.dat','r')
 lines=f.readlines()
 for x in lines:
     depth.append(np.double(x.split(' ')[0]))
