@@ -27,6 +27,6 @@ f.close()
 
 txt = open(options.outfile, 'w')
 for i in range(len(b)):
-    txt.write("%f %f %f %f\n" % (depth[i],b[i],a[i],t[i]))
+    txt.write("%f %f %f %f\n" % (depth[i], b[i], a[i], t[i]))
 txt.close()
 

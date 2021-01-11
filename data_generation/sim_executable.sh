@@ -53,9 +53,9 @@ $metaproject/env-shell.sh python ${mod_scripts}/change_water.py --a_corr=$water_
 # Replace the overall dom efficiency factor in cfg.txt (Note: check if values greater than 1 work!):
 sed "3s/.*/$dom_eff_corr/" ${water_default}/cfg.txt > ${water_tables}/cfg.txt
 
-# - taking p0 & p1 as input and produce an as.dat file in the water directory
+# taking p0 & p1 as input and produce an as.dat file in the water directory
 # format: dima_from_unified.py <p0> <p1> <out_file>
-python ${mod_scripts}/dima_from_unified.py "$p0_ang_acc" "$p1_ang_acc" "$water_tables/as.dat"
+# python ${mod_scripts}/dima_from_unified.py "$p0_ang_acc" "$p1_ang_acc" "$water_tables/as.dat"
 
 ### 3. RUN THE SIMULATION ###
 #Then we run the simulation for all 7 relevant POCAMs with the new files
