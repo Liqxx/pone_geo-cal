@@ -39,6 +39,7 @@ if not exists(out_sub):
 # fixed inputs
 N        = 100
 N_photon = 1e9
+gcd      = "/home/fhenningsen/gcd/physics_volume_GCD.i3.bz2"
 
 # submit 
 submit_data  = True
@@ -71,8 +72,8 @@ for abso in ABS:
 
         for dome in DOME:
 
-            out_file    = 'ABS-%.3f_SCA-%.3f_DOME-%.3f_P0-%.3f_P1-%.3f_NPH-%.3e_N-%i' %(abso, sca, dome, p0, p1, N_photon, N)
-            args        = "%i %s %.3f %.3f %.3f %.3f %.3f %i" %(N, join(out_folder, out_file), abso, sca, dome, p0, p1, N_photon)
+            out_file    = 'ABS-%.3f_SCA-%.3f_DOME-%.3f_NPH-%.3e_N-%i' %(abso, sca, dome, N_photon, N)
+            args        = "%i %s %.3f %.3f %.3f %.3f %.3f %i %s" %(N, join(out_folder, out_file), abso, sca, dome, N_photon, gcd)
             env         = "HDF5_USE_FILE_LOCKING='FALSE'"
             log_str     = 'job_deepcore_%s' %(out_file)
             submit_info = 'executable  = {script} \n\

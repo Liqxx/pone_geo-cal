@@ -7,8 +7,6 @@ eval $(/cvmfs/icecube.opensciencegrid.org/py2-v3.1.1/setup.sh)
 metaproject='/home/fhenningsen/osc/py2-ext/build'
 
 ### 1. DEFINE INPUT PARAMETER ###
-# geometry file
-gcd="/home/fhenningsen/gcd/physics_volume_GCD.i3.bz2"
 
 # number of runs
 N=$1
@@ -20,28 +18,30 @@ file_name=$2
 water_shift_abs=$3
 water_shift_sca=$4
 dom_eff_corr=$5
-p0_ang_acc=$6
-p1_ang_acc=$7
-phot=$8
+#p0_ang_acc=$6
+#p1_ang_acc=$7
+phot=$6
 
+# geometry file
+gcd=$7
 
 ### 2. APPLYING THE PARAMETERS BY EDITING FILES ###
 # Then we apply the parameters by editing the necessary files
 
 # modification scripts
-mod_scripts="/home/fhenningsen/pone_geo-cal/modification_scripts"
+mod_scripts="/home/fhenningsen/pone/pone_geo-cal/modification_scripts"
 
 # default water tables
-water_default="/home/fhenningsen/pone_geo-cal/watermodel/default"
+water_default="/home/fhenningsen/pone/pone_geo-cal/watermodel/default"
 
 # copy all the tables files so that a new submission doesnt change things
 # and create a new tmp directory for the current submission
 tmp_dir="tmp-a$3-b$4-de$5-p0$6-p1$7"
 # make sure that truth is not deleted after normal jobs finished running and parameters were the same
 if [[ $file_name == *"TRUTH"* ]]; then
-    water_tables="/home/fhenningsen/pone_geo-cal/watermodel/tmp/truth_${tmp_dir}"
+    water_tables="/home/fhenningsen/pone/pone_geo-cal/watermodel/tmp/truth_${tmp_dir}"
 else
-    water_tables="/home/fhenningsen/pone_geo-cal/watermodel/tmp/${tmp_dir}"
+    water_tables="/home/fhenningsen/pone/pone_geo-cal/watermodel/tmp/${tmp_dir}"
 fi
 # and copy all default files
 mkdir -p $water_tables
