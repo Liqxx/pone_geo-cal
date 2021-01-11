@@ -11,11 +11,11 @@ from os.path import join, exists
 datauser = '/data/user/fhenningsen'
 
 # executable
-executable = '/home/fhenningsen/osc/deepcore_systematics/data_generation/sim_executable.sh'
+executable = '/home/fhenningsen/pone_geo-cal/data_generation/sim_executable.sh'
 mem        = 10 #GB
 
 # tag for simulation
-sim_tag = '3d-sca-domeff-p0'
+sim_tag = 'water_test'
 
 # create time-sensitive folder for output
 t_str = datetime.datetime.now().isoformat('_')[:-7].replace(':', '-')

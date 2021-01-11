@@ -17,8 +17,8 @@ N=$1
 file_name=$2
 
 # Here, we define the 5 key parameters or rather define the lists of parameters we want to iterate through
-ice_shift_abs=$3
-ice_shift_sca=$4
+water_shift_abs=$3
+water_shift_sca=$4
 dom_eff_corr=$5
 p0_ang_acc=$6
 p1_ang_acc=$7
@@ -31,8 +31,8 @@ phot=$8
 # modification scripts
 mod_scripts="/home/fhenningsen/pone_geo-cal/modification_scripts"
 
-# default ice tables
-water_default="/home/fhenningsen/pone_geo-cal/default"
+# default water tables
+water_default="/home/fhenningsen/pone_geo-cal/watermodel/default"
 
 # copy all the tables files so that a new submission doesnt change things
 # and create a new tmp directory for the current submission
@@ -47,13 +47,13 @@ fi
 mkdir -p $water_tables
 cp ${water_default}/* ${water_tables}/.
 
-# Multiplying the offset to the icemodel parameters:
-$metaproject/env-shell.sh python ${mod_scripts}/change_ice.py --a_corr=$ice_shift_abs --b_corr=$ice_shift_sca --outfile=${water_tables}/icemodel.dat
+# Multiplying the offset to the watermodel parameters:
+$metaproject/env-shell.sh python ${mod_scripts}/change_water.py --a_corr=$water_shift_abs --b_corr=$water_shift_sca --outfile=${water_tables}/icemodel.dat
 
 # Replace the overall dom efficiency factor in cfg.txt (Note: check if values greater than 1 work!):
 sed "3s/.*/$dom_eff_corr/" ${water_default}/cfg.txt > ${water_tables}/cfg.txt
 
-# - taking p0 & p1 as input and produce an as.dat file in the ice directory
+# - taking p0 & p1 as input and produce an as.dat file in the water directory
 # format: dima_from_unified.py <p0> <p1> <out_file>
 python ${mod_scripts}/dima_from_unified.py "$p0_ang_acc" "$p1_ang_acc" "$water_tables/as.dat"
 
@@ -91,5 +91,5 @@ string=93
 dom=64
 $metaproject/env-shell.sh python /home/fhenningsen/osc/deepcore_systematics/data_generation/simple_POCAM_simulation.py --gcd-file=$gcd  --output-i3-file="${file_name}" --number-of-photons=$phot --number-of-runs=$N --string=$string --dom=$dom --ice-tables=$water_tables
 
-# remove the current ice dir
-#rm -rf $ice_tables
+# remove the current water dir
+#rm -rf $water_tables
