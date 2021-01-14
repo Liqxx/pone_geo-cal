@@ -11,7 +11,7 @@ from os.path import join, exists
 datauser = '/data/user/fhenningsen'
 
 # executable
-executable = '/home/fhenningsen/pone_geo-cal/data_generation/sim_executable.sh'
+executable = '/home/fhenningsen/pone/pone_geo-cal/data_generation/sim_executable.sh'
 mem        = 10 #GB
 
 # tag for simulation
@@ -51,7 +51,7 @@ SCA   = np.linspace(0.5, 1.5,    n_par)
 DOME  = np.linspace(0.5, 1.5,    n_par)
 
 # fill parameter grid
-grid_filled = np.zeros((len(ABS) * len(SCA) * len(DOME)), 3)
+grid_filled = np.zeros((len(ABS) * len(SCA) * len(DOME), 3))
 
 cntr = 0
 for abso in ABS:
@@ -72,8 +72,8 @@ for abso in ABS:
 
         for dome in DOME:
 
-            out_file    = 'ABS-%.3f_SCA-%.3f_DOME-%.3f_NPH-%.3e_N-%i' %(abso, sca, dome, N_photon, N)
-            args        = "%i %s %.3f %.3f %.3f %.3f %.3f %i %s" %(N, join(out_folder, out_file), abso, sca, dome, N_photon, gcd)
+            out_file    = 'GCD_%s_ABS-%.3f_SCA-%.3f_DOME-%.3f_NPH-%.3e_N-%i' %(gcd.split('/')[-1], abso, sca, dome, N_photon, N)
+            args        = "%i %s %.3f %.3f %.3f %i %s" %(N, join(out_folder, out_file), abso, sca, dome, N_photon, gcd)
             env         = "HDF5_USE_FILE_LOCKING='FALSE'"
             log_str     = 'job_deepcore_%s' %(out_file)
             submit_info = 'executable  = {script} \n\

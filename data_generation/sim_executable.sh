@@ -36,7 +36,7 @@ water_default="/home/fhenningsen/pone/pone_geo-cal/watermodel/default"
 
 # copy all the tables files so that a new submission doesnt change things
 # and create a new tmp directory for the current submission
-tmp_dir="tmp-a$3-b$4-de$5-p0$6-p1$7"
+tmp_dir="tmp-a$3-b$4-de$5"
 # make sure that truth is not deleted after normal jobs finished running and parameters were the same
 if [[ $file_name == *"TRUTH"* ]]; then
     water_tables="/home/fhenningsen/pone/pone_geo-cal/watermodel/tmp/truth_${tmp_dir}"
