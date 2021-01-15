@@ -44,7 +44,7 @@ os.putenv("WFLA","405") # emitting wavelength
 tray.AddModule("i3ppc", "ppc")(
     ("nph", options.number_of_photons), #number of photons
     ("fla", OMKey(options.string, options.dom)), #flashing OM position
-    ("wid",5)  #pulse width in ns
+    ("wid", 5)  #pulse width in ns
     )
 
 print('fla', OMKey(options.string, options.dom))
